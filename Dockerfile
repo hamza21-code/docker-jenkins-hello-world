@@ -1,6 +1,10 @@
 # Maven build container 
 
-FROM maven:3.8.5-openjdk-11 AS maven_build
+#FROM maven:3.8.5-openjdk-11 AS maven_build
+
+FROM openjdk:11-jdk
+
+ARG MAVEN_VERSION=3.8.5
 
 COPY pom.xml /tmp/
 
