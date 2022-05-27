@@ -1,6 +1,10 @@
 Jenkinsfile (Declarative Pipeline)
 pipeline {
-    agent any
+    agent {
+        node {
+          label 'maven'
+        }
+      }
     stages {
         stage('Build') {
             steps {
