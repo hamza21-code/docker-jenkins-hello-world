@@ -1,14 +1,15 @@
 Jenkinsfile (Declarative Pipeline)
 pipeline {
     agent {
-        node {
-          label 'maven'
+        docker {
+            image 'maven:3.8.5-adoptopenjdk-11'
+            args '-v /root/.m2:/root/.m2'
         }
-      }
+    }
     stages {
         stage('Build') {
             steps {
-                bat 'set'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
     }
