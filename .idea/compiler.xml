@@ -7,11 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="hello-world" />
-        <module name="docker-jenkins-hello-world" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="docker-jenkins-hello-world" target="1.8" />
+      <module name="hello-world" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
