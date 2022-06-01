@@ -1,18 +1,9 @@
 pipeline {
-    agent any
+    agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
     stages {
-        stage('Check windows') {
+        stage('build') {
             steps {
-                echo 'Hello windows World'
-                sh 'docker info'
-            }
-        }
-
-        stage('Check Linux') {
-                    steps {
-                        echo 'Hello linux World'
-                        sh 'docker info'
-                    }
-        }
+                sh 'mvn --version'
+        }    }
     }
 }
