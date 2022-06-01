@@ -4,7 +4,7 @@ pipeline {
         stage('Check windows') {
             steps {
                 echo 'Hello windows World'
-                bat 'docker info'
+                sh 'docker info'
             }
         }
 
