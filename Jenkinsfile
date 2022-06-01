@@ -1,38 +1,10 @@
 pipeline {
-  agent any
-  stages {
-    stage("verify tooling") {
-      steps {
-        bat '''
-          docker version
-          docker info
-          docker compose version
-          curl --version
-          jq --version
-        '''
-      }
+    agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
     }
-    stage('Prune Docker data') {
-      steps {
-        bat 'docker system prune -a --volumes -f'
-      }
-    }
-    stage('Start container') {
-      steps {
-        bat 'docker compose up -d --no-color --wait'
-        bat 'docker compose ps'
-      }
-    }
-    stage('Run tests against the container') {
-      steps {
-        bat 'curl http://localhost:3000/param?query=demo | jq'
-      }
-    }
-  }
-  post {
-    always {
-      bat 'docker compose down --remove-orphans -v'
-      bat 'docker compose ps'
-    }
-  }
 }
